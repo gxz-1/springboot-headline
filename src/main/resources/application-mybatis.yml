@@ -1,0 +1,16 @@
+# mybatis-plus配置
+mybatis-plus:
+  # 1.驼峰式映射默认开启   2.mapper-location默认位置为“classpath:/mapper/*”
+  configuration:
+    # 3.控制台输出
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  # 4.配置别名
+  type-aliases-package: com.gxz.pojo
+  global-config:
+    db-config:
+      # 5.设置全局主键生成策略 auto自增长 ASSIGN_ID雪花算法
+      id_type: auto
+      # 6.实体类到数据库表映射时，表名称的前缀
+      table-prefix: news_
+      # 7.配置逻辑删除的全局属性字段
+      logic-delete-field: deleted

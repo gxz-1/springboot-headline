@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      url: jdbc:mysql://202.115.16.29:9875/sm_db
+      username: admin
+      password: password
+      driver-class-name: com.mysql.cj.jdbc.Driver

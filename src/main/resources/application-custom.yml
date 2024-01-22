@@ -1,0 +1,5 @@
+#自定义的配置
+jwt:
+  token:
+    tokenExpiration: 120 #有效时间min
+    tokenSignKey: headline123465 #自定义的签名密钥
