@@ -7,4 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public interface HeadlineService {
     Result findNewsPage(PortalVo portalVo);
+
+    Result showHeadlineDetail(Long hid);
 }

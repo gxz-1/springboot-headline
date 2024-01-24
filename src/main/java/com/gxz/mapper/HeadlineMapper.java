@@ -11,6 +11,7 @@ import java.util.Map;
 
 public interface HeadlineMapper extends BaseMapper<Headline> {
 
+    Map queryDetailMap(Long hid);
 }
 
 

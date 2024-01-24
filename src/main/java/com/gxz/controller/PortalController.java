@@ -31,4 +31,11 @@ public class PortalController {
         return result;
     }
 
+    //根据新闻id查询新闻详情，并新增浏览量
+    @PostMapping("showHeadlineDetail")
+    public Result showHeadlineDetail(Long hid){
+        Result result = headlineService.showHeadlineDetail(hid);
+        return result;
+    }
+
 }

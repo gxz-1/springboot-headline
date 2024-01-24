@@ -54,4 +54,21 @@ public class HeadlineServiceImpl implements HeadlineService {
         data.put("pageInfo",pageInfo);
         return Result.ok(data);
     }
+
+    @Override
+    public Result showHeadlineDetail(Long hid) {
+        //1.自定义多表查询(顺便查询乐观锁的version，便于更新浏览量)
+        Map m = headlineMapper.queryDetailMap(hid);
+        //2.修改浏览量+1
+        Headline headline=new Headline();
+        headline.setHid(hid);
+        headline.setVersion((Integer) m.get("version"));//乐观锁，检查版本号
+        headline.setPageViews((Integer) m.get("pageViews")+1);
+        headlineMapper.updateById(headline);//headline为null的字段不修改
+        //3.数据封装并返回
+        m.remove("version");
+        Map data=new HashMap();
+        data.put("headline",m);
+        return Result.ok(data);
+    }
 }

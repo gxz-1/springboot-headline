@@ -20,6 +20,13 @@ public class UserController {
         return result;
     }
 
+    //根据请求头中的token判断是否登录
+    @GetMapping("checkLogin")
+    public Result checkLogin(@RequestHeader String token){
+        Result result = userService.checkLogin(token);
+        return result;
+    }
+
     //根据请求头的token返回用户信息
     @GetMapping("getUserInfo")
     public Result getUserInfo(@RequestHeader String token){
@@ -30,14 +37,17 @@ public class UserController {
     //检查用户名是否被使用
     @PostMapping("checkUserName")
     public Result checkUserName(String username){
-        Result result=userService.checkUserName(username);
+        Result result = userService.checkUserName(username);
         return result;
     }
 
+    //用户注册
     @PostMapping("regist")
     public Result regist(@RequestBody User user){
-        Result result=userService.regist(user);
+        Result result = userService.regist(user);
         return result;
     }
+
+
 
 }

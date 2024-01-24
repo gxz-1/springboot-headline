@@ -47,6 +47,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public Result checkLogin(String token) {
+        if(jwtHelper.isExpiration(token)){
+            return Result.build(null,ResultCodeEnum.NOTLOGIN);
+        }
+        return Result.ok(null);
+    }
+
+    @Override
     public Result getUserInfo(String token) {
         //1.校验token有效期
         boolean expiration = jwtHelper.isExpiration(token);
@@ -90,4 +98,8 @@ public class UserServiceImpl implements UserService {
         userMapper.insert(user);
         return Result.ok(null);
     }
+
+
+
+
 }

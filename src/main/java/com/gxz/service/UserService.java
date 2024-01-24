@@ -6,9 +6,12 @@ import com.gxz.utils.Result;
 public interface UserService {
     Result login(User user);
 
+    Result checkLogin(String token);
+
     Result getUserInfo(String token);
 
     Result checkUserName(String username);
 
     Result regist(User user);
+
 }
