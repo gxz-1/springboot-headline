@@ -11,10 +11,10 @@ import java.util.concurrent.TimeUnit;
 public class HeadlineVo {
     private Long hid;
     private String title;
-    private Integer type;
+    private Long type;
     private Integer pageViews;
     private Long pastHours;
-    private Integer publisher;
+    private Long publisher;
 
     public HeadlineVo(Headline headline){
         this.hid=headline.getHid();

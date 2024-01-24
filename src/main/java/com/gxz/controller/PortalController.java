@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class PortalController {
     @Autowired
     private PortalService portalService;
+
     @Autowired
     private HeadlineService headlineService;
+
     //首页获取所有类别
     @RequestMapping("findAllTypes")
     public Result findAllTypes(){
@@ -37,5 +39,7 @@ public class PortalController {
         Result result = headlineService.showHeadlineDetail(hid);
         return result;
     }
+
+
 
 }

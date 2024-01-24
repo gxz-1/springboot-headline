@@ -1,12 +1,15 @@
 package com.gxz.service;
 
-import com.gxz.mapper.HeadlineMapper;
+import com.gxz.pojo.Headline;
 import com.gxz.utils.Result;
 import com.gxz.vo.PortalVo;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public interface HeadlineService {
     Result findNewsPage(PortalVo portalVo);
 
     Result showHeadlineDetail(Long hid);
+
+    Result publish(String token, Headline headline);
+
+    Result findHeadlineByHid(Integer hid);
 }

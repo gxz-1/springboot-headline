@@ -20,8 +20,8 @@ public class Headline implements Serializable {
 
     private String title;
     private String article;
-    private Integer type;
-    private Integer publisher;
+    private Long type;
+    private Long publisher;
     private Integer pageViews;
     private Date createTime;
     private Date updateTime;

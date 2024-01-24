@@ -1,11 +1,11 @@
 package com.gxz.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.gxz.mapper.HeadlineMapper;
 import com.gxz.pojo.Headline;
 import com.gxz.service.HeadlineService;
+import com.gxz.utils.JwtHelper;
 import com.gxz.utils.Result;
 import com.gxz.vo.HeadlineVo;
 import com.gxz.vo.PortalVo;
@@ -13,16 +13,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @Transactional
 public class HeadlineServiceImpl implements HeadlineService {
     @Autowired
     private HeadlineMapper headlineMapper;
+
+    @Autowired
+    private JwtHelper jwtHelper;
 
     @Override
     public Result findNewsPage(PortalVo portalVo) {
@@ -69,6 +69,28 @@ public class HeadlineServiceImpl implements HeadlineService {
         m.remove("version");
         Map data=new HashMap();
         data.put("headline",m);
+        return Result.ok(data);
+    }
+
+    @Override
+    public Result publish(String token, Headline headline) {
+        //1.根据token查询用户信息
+        Long userId = jwtHelper.getUserId(token);
+        //2.构造插入数据
+        headline.setPublisher(userId);
+        headline.setPageViews(0);
+        headline.setCreateTime(new Date());
+        headline.setUpdateTime(new Date());
+        //3.插入数据
+        headlineMapper.insert(headline);
+        return Result.ok(null);
+    }
+
+    @Override
+    public Result findHeadlineByHid(Integer hid) {
+        Headline headline = headlineMapper.selectById(hid);
+        Map data=new HashMap();
+        data.put("headline",headline);
         return Result.ok(data);
     }
 }
