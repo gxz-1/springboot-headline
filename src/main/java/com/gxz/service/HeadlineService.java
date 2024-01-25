@@ -12,4 +12,8 @@ public interface HeadlineService {
     Result publish(String token, Headline headline);
 
     Result findHeadlineByHid(Integer hid);
+
+    Result updateHeadline(Headline headline);
+
+    Result removeByHid(Integer hid);
 }

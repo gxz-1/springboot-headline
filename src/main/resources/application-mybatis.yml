@@ -13,4 +13,4 @@ mybatis-plus:
       # 6.实体类到数据库表映射时，表名称的前缀
       table-prefix: news_
       # 7.配置逻辑删除的全局属性字段
-      logic-delete-field: deleted
+      logic-delete-field: isDeleted

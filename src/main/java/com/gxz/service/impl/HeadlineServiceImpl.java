@@ -86,11 +86,30 @@ public class HeadlineServiceImpl implements HeadlineService {
         return Result.ok(null);
     }
 
+
+    @Override
+    public Result updateHeadline(Headline headline) {
+        //1.查询最新的版本号version
+        Integer version = headlineMapper.selectById(headline.getHid()).getVersion();
+        headline.setVersion(version);//保证乐观锁：执行update的时候检查传入version与实际version是否一致
+        //2.更新UpdateTime字段
+        headline.setUpdateTime(new Date());
+        //3.执行update
+        headlineMapper.updateById(headline);
+        return Result.ok(null);
+    }
+
     @Override
     public Result findHeadlineByHid(Integer hid) {
         Headline headline = headlineMapper.selectById(hid);
         Map data=new HashMap();
         data.put("headline",headline);
         return Result.ok(data);
+    }
+
+    @Override
+    public Result removeByHid(Integer hid) {
+        int rows = headlineMapper.deleteById(hid);
+        return Result.ok(null);
     }
 }
